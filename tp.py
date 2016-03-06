@@ -23,10 +23,9 @@ def get_stop(stop):
             outp = dict(cached=True, **cache[stop])
             outp.pop("time")
             return jsonify(outp)
-    else:
-        outp = get_stop_info(stop)
-        cache[stop] = dict(time=time(), **outp)
-        return jsonify(dict(cached=False, **outp))
+    outp = get_stop_info(stop)
+    cache[stop] = dict(time=time(), **outp)
+    return jsonify(dict(cached=False, **outp))
 
 if __name__ == "__main__":
     app.run(port=36381, debug=True)
